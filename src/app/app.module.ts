@@ -10,6 +10,9 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GithubSearchComponent } from './Components/github-search/github-search.component';
 import { GithubProfileComponent } from './Components/github-profile/github-profile.component';
 import { GithubReposComponent } from './Components/github-repos/github-repos.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -18,13 +21,15 @@ import { GithubReposComponent } from './Components/github-repos/github-repos.com
     NavbarComponent,
     GithubSearchComponent,
     GithubProfileComponent,
-    GithubReposComponent
+    GithubReposComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,23 +18,25 @@
     </div>
 </div>
 
-
 <div class="container card-body mt-4">
     <div class="card">
         <div class="card-header">
             <h5>Repositories</h5>
         </div>
 
-        <div align="center" class="container row">
+        <div class="container row">
 
             
                 <div *ngFor="let repo of repos" class="col-sm-6 mb-3 mt-3"> 
-                    <div class="card">
+                    <div class="card" id="repo-card" >
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            <h5 class="card-title">{{repo.name}}</h5>
+                            <p class="card-text">{{repo.description}}
                             </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+<div>
+<h5><span *ngFor="let topic of repo.topics" class="badge bg-secondary mt-1 ms-1">{{topic}}</span></h5>
+</div>
+                            
                         </div>
                     </div>
                 </div>
@@ -43,6 +45,8 @@
         </div>
 
 </div>
+
+
 
 <!-- <div class="container card-body mt-4">
     <div class="card">
