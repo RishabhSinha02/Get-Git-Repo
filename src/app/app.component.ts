@@ -11,7 +11,7 @@ export class AppComponent {
   username : any
   title = 'get-git-repo';
   data : any
-  currenttest = 'Bolo'
+  
   constructor(private user: GithubService ) {
     user.getData('RishabhSinha02').subscribe((data)=>{
       console.warn(data)

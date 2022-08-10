@@ -11,8 +11,7 @@ import { GithubSearchComponent } from './Components/github-search/github-search.
 import { GithubProfileComponent } from './Components/github-profile/github-profile.component';
 import { GithubReposComponent } from './Components/github-repos/github-repos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {MatCardModule} from '@angular/material/card';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -29,7 +28,7 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
