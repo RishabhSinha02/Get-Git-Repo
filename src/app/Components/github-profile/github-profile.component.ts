@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges} from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
 
 @Component({
@@ -6,9 +6,11 @@ import { GithubService } from 'src/app/services/github.service';
   templateUrl: './github-profile.component.html',
   styleUrls: ['./github-profile.component.css']
 })
-export class GithubProfileComponent implements OnInit {
+export class GithubProfileComponent implements OnChanges {
 
-  username : any
+  @Input() username!: string
+
+
   data : any
   repos: any
 
@@ -18,21 +20,22 @@ export class GithubProfileComponent implements OnInit {
   tableSizes: any = [5, 10, 15, 20 ];
 
   constructor(private user: GithubService ) {}
-
-  ngOnInit(): void {
+  
+  ngOnChanges(): void {
+    console.log(this.username)
     this.dataList();
     this.repoList();
   }
 
   dataList():void{
-    this.user.getData('OmkarPh').subscribe((response)=>{
+    this.user.getData(this.username).subscribe((response)=>{
       this.data = response;
       console.log(this.data)
     })
   }
 
   repoList():void{
-    this.user.getRepo('OmkarPh').subscribe((response)=>{
+    this.user.getRepo(this.username).subscribe((response)=>{
       this.repos = response;
       console.log(this.repos)
     })

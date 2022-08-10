@@ -1,10 +1,11 @@
 <div class="container card-body mt-4">
   <div class="card">
     <div class="card-header">
-      <h5>Search GitHub Repositories</h5>
+      <font [size]="4"><b> Search GitHub Repositories</b></font>
     </div>
     <div class="card-body">
-      <form class="d-flex" (submit)="searchUser()">
+
+      <form class="d-flex" (ngSubmit)="searchUser()">
         <div class="form-group">
           <input [(ngModel)]="inputGithubUser" size="40" name="user" class="form-control" type="search"
             placeholder="GitHub Username">
@@ -15,6 +16,7 @@
         </div>
         <!-- {{inputGithubUser}} -->
       </form>
+
     </div>
   </div>
   <div>
