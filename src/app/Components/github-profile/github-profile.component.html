@@ -92,6 +92,6 @@
 </div>
 
 </div>
-<div *ngIf="!repos?.total_count &&repoFetching==true">
+<div *ngIf="data?.public_repos===0 &&repoFetching==true">
     Repository not found!!
-  </div>
+</div>

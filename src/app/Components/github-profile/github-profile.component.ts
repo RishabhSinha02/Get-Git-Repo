@@ -26,7 +26,7 @@ export class GithubProfileComponent implements OnChanges {
   ngOnChanges(): void {
     this.repoFetching = true;
     this.page = 1;
-    console.log(this.username)
+    console.log(this.repoFetching)
     this.reset();
     this.dataList();
     this.listRepo()
@@ -53,6 +53,7 @@ export class GithubProfileComponent implements OnChanges {
       console.log(this.repos)
       this.count = this.repos.total_count;
       this.repoFetching = false;
+      console.log(this.repoFetching)
     })
   }
   
