@@ -9,7 +9,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GithubSearchComponent } from './Components/github-search/github-search.component';
 import { GithubProfileComponent } from './Components/github-profile/github-profile.component';
-import { GithubReposComponent } from './Components/github-repos/github-repos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -29,7 +28,6 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
     NavbarComponent,
     GithubSearchComponent,
     GithubProfileComponent,
-    GithubReposComponent,
   ],
   imports: [
     BrowserModule,
