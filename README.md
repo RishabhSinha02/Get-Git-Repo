@@ -1,5 +1,11 @@
 # GetGitRepo
 
+##TechStack
+<li>Angular 13.x</li>
+<li>Libraries: Angular Matarial, Bootstarp, NgxPagination, FontAwesome </li>
+
+<hr>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
 
 ## Development server
