@@ -9,6 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class GithubSearchComponent implements OnInit {
 
+// To flow the data from child to parent i.e main App-component
   @Output() onSearchUser: EventEmitter<any> = new EventEmitter();
   public inputGithubUser: string = '';
   
