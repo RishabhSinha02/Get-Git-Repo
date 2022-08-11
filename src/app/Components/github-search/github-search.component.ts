@@ -9,6 +9,7 @@ export class GithubSearchComponent implements OnInit {
 
   @Output() onSearchUser: EventEmitter<any> = new EventEmitter();
   public inputGithubUser: string | undefined;
+  
 
   constructor() { }
 

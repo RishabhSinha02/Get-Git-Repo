@@ -16,6 +16,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { IntercepterService } from './loader/intercepter.service';
+import {MatIconModule} from '@angular/material/icon';
+
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
+
+
 
 
 @NgModule({
@@ -35,7 +40,9 @@ import { IntercepterService } from './loader/intercepter.service';
     BrowserAnimationsModule,
     NgxPaginationModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    FontAwesomeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: IntercepterService, multi: true}

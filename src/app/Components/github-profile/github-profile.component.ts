@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges} from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-github-profile',
@@ -22,6 +23,7 @@ export class GithubProfileComponent implements OnChanges {
   constructor(private user: GithubService ) {}
   
   ngOnChanges(): void {
+    this.page = 1;
     console.log(this.username)
     this.reset();
     this.dataList();
@@ -38,7 +40,6 @@ export class GithubProfileComponent implements OnChanges {
 
   repoList():void{
     this.user.getRepo(this.username, this.page, this.tableSize).subscribe((response)=>{
-      // this.user.getRepo(this.username).subscribe((response)=>{
       this.repos = response;
       console.log(this.repos)
       this.count = this.repos.total_count;
@@ -46,6 +47,8 @@ export class GithubProfileComponent implements OnChanges {
   }
   
   onTableDataChange(event: any){
+    this.repos=null;
+    $(window).scrollTop(0);
     this.page = event;
     this.repoList();
   }
@@ -53,7 +56,6 @@ export class GithubProfileComponent implements OnChanges {
   onTableSizeChange(event: any): void{
     this.tableSize = event.target.value;
     this.page =1;
-    this.repos=null;
     this.repoList();
   }
 

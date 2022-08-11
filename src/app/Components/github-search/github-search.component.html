@@ -6,12 +6,17 @@
     <div class="card-body">
 
       <form class="d-flex" (ngSubmit)="searchUser()">
-        <div class="form-group">
+        
+          <div class="">
+            <i class="fa fa-github fa-3x" aria-hidden="true"></i>
+          </div>
+          &nbsp;&nbsp;
+          <div class="col-auto mt-1">
           <input [(ngModel)]="inputGithubUser" size="40" name="user" class="form-control" type="search"
             placeholder="GitHub Username">
-        </div>
+          </div>
         &nbsp;&nbsp;
-        <div>
+        <div class="col-auto mt-1">
           <input type="submit" value="Search" class="btn btn-success">
         </div>
         <!-- {{inputGithubUser}} -->

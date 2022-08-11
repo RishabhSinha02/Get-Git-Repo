@@ -19,8 +19,6 @@ export class GithubService {
     getRepo(username: string, page: number, per_page: number){
     
     let url = `https://api.github.com/search/repositories?q=user:${username} in:name sort:updated-asc&page=${page}&per_page=${per_page}`;
-    // let url = `https://api.github.com/users/${username}/repos`;
-    
         
     return this.httpClient.get(url);
   }
