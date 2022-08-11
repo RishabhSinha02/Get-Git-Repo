@@ -8,7 +8,7 @@ import { GithubService } from './services/github.service';
 })
 
 export class AppComponent {
-  username!: string;
+  username: string = "";
   title = 'get-git-repo';
   data : any
 

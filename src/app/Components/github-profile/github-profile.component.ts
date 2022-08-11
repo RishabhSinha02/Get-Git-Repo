@@ -23,6 +23,7 @@ export class GithubProfileComponent implements OnChanges {
   
   ngOnChanges(): void {
     console.log(this.username)
+    this.reset();
     this.dataList();
     this.repoList();
   }
@@ -30,14 +31,17 @@ export class GithubProfileComponent implements OnChanges {
   dataList():void{
     this.user.getData(this.username).subscribe((response)=>{
       this.data = response;
-      console.log(this.data)
+      console.log(this.data);
+      console.log(this.data.public_repos);
     })
   }
 
   repoList():void{
-    this.user.getRepo(this.username).subscribe((response)=>{
+    this.user.getRepo(this.username, this.page, this.tableSize).subscribe((response)=>{
+      // this.user.getRepo(this.username).subscribe((response)=>{
       this.repos = response;
       console.log(this.repos)
+      this.count = this.repos.total_count;
     })
   }
   
@@ -49,7 +53,13 @@ export class GithubProfileComponent implements OnChanges {
   onTableSizeChange(event: any): void{
     this.tableSize = event.target.value;
     this.page =1;
+    this.repos=null;
     this.repoList();
   }
 
+  reset(){
+    this.data=null;
+    this.repos=null;
+  }
+ 
 }

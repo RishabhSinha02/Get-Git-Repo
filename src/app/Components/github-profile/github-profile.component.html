@@ -1,29 +1,31 @@
-<div class="container card-body mt-4">
-    <div class="card">
-        <div class="card-header">
-            <font [size]="4"> <b> Profile </b></font>
-        </div>
-        <div class="row g-0">
-            <div class="mt-2 col-md-2">
-                <img src="{{data.avatar_url}}" class="mx-auto d-block">
+<div *ngIf="data">
+    <div class="container card-body mt-4">
+        <div class="card">
+            <div class="card-header">
+                <font [size]="4"> <b> Profile </b></font>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{data.name}}</h5>
-                    <p class="card-text">{{data.location}}</p>
-                    <a href="{{data.html_url}}" target="_blank">
-                        <p class="card-text"><small class="text-muted">GitHub</small></p>
-                    </a>
-                    <a href="{{data.twitter_username}}" target="_blank">
-                        <p class="card-text"><small class="text-muted">{{data.twitter_username}}</small></p>
-                    </a>
+            <div class="row g-0">
+                <div class="mt-2 col-md-2">
+                    <img src="{{data.avatar_url}}" class="mx-auto d-block">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{data.name}}</h5>
+                        <p class="card-text">{{data.location}}</p>
+                        <a href="{{data.html_url}}" target="_blank">
+                            <p class="card-text"><small class="text-muted">GitHub</small></p>
+                        </a>
+                        <a href="{{data.twitter_username}}" target="_blank">
+                            <p class="card-text"><small class="text-muted">{{data.twitter_username}}</small></p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
+<div *ngIf="repos && repos!=null">
 <div class="container card-body mt-4">
     <div class="card">
         <div class="card-header">
@@ -31,9 +33,12 @@
         </div>
 
         <div class="container row">
+            
+            <!-- <div *ngFor="let repo of repos | paginate:{ -->
 
-
-            <div *ngFor="let repo of repos | paginate:{
+            <div *ngFor="let repo of repos.items | paginate:{
+                
+                
                 itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: count
@@ -55,17 +60,13 @@
             </div>
         </div>
         <div align="center">
-            <pagination-controls
-            previousLabel="Prev"
-            nextLabel="Next"
-            (pageChange)="onTableDataChange($event)"
-            >
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
 
             </pagination-controls>
         </div>
 
     </div>
-
+</div>
 </div>
 
 

@@ -1,3 +1,6 @@
 <app-navbar></app-navbar>
 <app-github-search (onSearchUser)="SearchHandler($event)"></app-github-search>
-<app-github-profile [username]="username"></app-github-profile>
+<div *ngIf="username !== ''">
+    <app-github-profile [username]="username"></app-github-profile>
+</div>
+    
