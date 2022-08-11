@@ -27,7 +27,6 @@ export class GithubProfileComponent implements OnChanges {
   ngOnChanges(): void {
     this.repoFetching = true;
     this.page = 1;
-    console.log(this.repoFetching)
     this.reset();
     this.dataList();
     this.listRepo()
@@ -39,18 +38,11 @@ export class GithubProfileComponent implements OnChanges {
   }
 
 
-  // dataList():void{
-  //   this.user.getData(this.username).subscribe((response)=>{
-      
-      
-  //   })
-  // }
+
   dataList():void{
     this.user.getData(this.username).subscribe({
       next:(response) =>{
         this.data = response;
-        console.log(this.data);
-        console.log(this.data.public_repos);
         this.profileFetching = false;
       },
       error: (err) => {
@@ -68,10 +60,8 @@ export class GithubProfileComponent implements OnChanges {
   repoList():void{
     this.user.getRepo(this.username, this.page, this.tableSize).subscribe((response)=>{
       this.repos = response;
-      console.log(this.repos)
       this.count = this.repos.total_count;
       this.repoFetching = false;
-      console.log(this.repoFetching)
     })
   }
   

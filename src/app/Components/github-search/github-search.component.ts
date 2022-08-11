@@ -16,7 +16,6 @@ export class GithubSearchComponent implements OnInit {
   constructor() { }
 
   public searchUser(){
-    console.log(this.inputGithubUser);
     this.onSearchUser.emit(this.inputGithubUser);
     this.inputGithubUser = '';
     
