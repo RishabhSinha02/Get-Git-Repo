@@ -63,5 +63,12 @@ export class GithubProfileComponent implements OnChanges {
     this.data=null;
     this.repos=null;
   }
+
+  maxRepoLimiter(): number {
+    if (this.repos.total_count! > 1000) {
+      return (this.repos.total_count = 1000);
+    }
+    return this.repos.total_count;
+  }
  
 }
