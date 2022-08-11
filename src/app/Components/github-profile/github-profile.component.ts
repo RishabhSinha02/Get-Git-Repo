@@ -12,6 +12,7 @@ export class GithubProfileComponent implements OnChanges {
   @Input() username!: string
 
   repoFetching: boolean = false
+  profileFetching: boolean = false
 
   data : any
   repos: any
@@ -33,20 +34,37 @@ export class GithubProfileComponent implements OnChanges {
 
   }
 
-  dataList():void{
-    this.user.getData(this.username).subscribe((response)=>{
-      this.data = response;
-      console.log(this.data);
-      console.log(this.data.public_repos);
-      
-    })
+  viewProfile(){
+    this.dataList();
   }
+
+
+  // dataList():void{
+  //   this.user.getData(this.username).subscribe((response)=>{
+      
+      
+  //   })
+  // }
+  dataList():void{
+    this.user.getData(this.username).subscribe({
+      next:(response) =>{
+        this.data = response;
+        console.log(this.data);
+        console.log(this.data.public_repos);
+        this.profileFetching = false;
+      },
+      error: (err) => {
+        this.profileFetching = true;
+      },
+    });
+  }
+
 
 
   listRepo(){
     this.repoList();
   }
-
+  
   repoList():void{
     this.user.getRepo(this.username, this.page, this.tableSize).subscribe((response)=>{
       this.repos = response;

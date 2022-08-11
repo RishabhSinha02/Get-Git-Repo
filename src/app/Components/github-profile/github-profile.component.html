@@ -13,9 +13,12 @@
                         <font [size]="5"><b>
                                 <div class="card-title">{{data.name}}</div>
                             </b></font>
+
+                            
                         <p class="card-text">{{data.bio}}</p>
-                        <p class="card-text"><i class="fa fa-map" aria-hidden="true"></i> &nbsp;
-                            <i>{{data.location}}</i></p>
+                        <p *ngIf="data.location!=null" class="card-text"><i class="fa fa-map" aria-hidden="true"></i> &nbsp;
+                            <i>{{data.location}}</i>
+                        </p>
                         <p class="card-text">
                             <a href="http://github.com/{{data.login}}" target="_blank">
                                 <small class="text-muted"><i class="fa fa-github fa-2x" aria-hidden="true"></i></small>
@@ -23,14 +26,19 @@
 
                             &nbsp;
 
-                            <a *ngIf="data.twitter_username!=null" href="http://twitter.com/{{data.twitter_username}}" target="_blank">
+                            <a *ngIf="data.twitter_username!=null" href="http://twitter.com/{{data.twitter_username}}"
+                                target="_blank">
                                 <small class="text-muted"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></small>
 
                             </a>
                             
-                            
-                            
+
+
+
                         </p>
+                        <div *ngIf="data.name==null">
+                            <br><br>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,60 +46,85 @@
     </div>
 
 
-<div *ngIf="repos && repos!=null">
-    <div class="container card-body mt-4">
-        <div class="card">
-            <div class="card-header">
-                <font [size]="4"><b> Repositories</b></font>
-            </div>
+    <div *ngIf="repos && repos!=null">
+        <div class="container card-body mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <font [size]="4"><b> Repositories</b></font>
+                </div>
 
-            <div class="container row">
+                <div class="container row">
 
-                <!-- <div *ngFor="let repo of repos | paginate:{ -->
+                    <!-- <div *ngFor="let repo of repos | paginate:{ -->
 
-                <div *ngFor="let repo of repos.items | paginate:{
+                    <div *ngFor="let repo of repos.items | paginate:{
                 
                 
                 itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: RepoLimiter()
             }; let i = index " class="col-sm-6 mb-3 mt-3">
-                    <div class="" id="repo-card">
-                        <div class="">
-                            <hr class="border border-secondary border-2 opacity-50">
-                            <a href="{{repo.html_url}}" target="_blank">
-                                <font [size]="4"><b>
-                                        <div class="card-title">{{repo.name}}</div>
-                                    </b></font>
-                            </a>
-                            <font [size]="3">
-                                <p class="card-text mt-3">{{repo.description}}
-                                </p>
-                            </font>
-                            <div>
-                                <b><span *ngFor="let topic of repo.topics" class="badge bg-secondary mt-2 ms-1">
-                                        <div class="mt-1 mb-1">
-                                            <font [size]="3">
-                                                {{topic}}</font>
-                                        </div>
-                                    </span></b>
-                            </div>
+                        <div class="" id="repo-card">
+                            <div class="">
+                                <hr class="border border-secondary border-2 opacity-50">
+                                <a href="{{repo.html_url}}" target="_blank">
+                                    <font [size]="4"><b>
+                                            <div class="card-title">{{repo.name}}</div>
+                                        </b></font>
+                                </a>
+                                <font [size]="3">
+                                    <p class="card-text mt-3">{{repo.description}}
+                                    </p>
+                                </font>
+                                <div>
+                                    <b><span *ngFor="let topic of repo.topics" class="badge bg-secondary mt-2 ms-1">
+                                            <div class="mt-1 mb-1">
+                                                <font [size]="3">
+                                                    {{topic}}</font>
+                                            </div>
+                                        </span></b>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div align="center" class="mt-3">
-                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                <div align="center" class="mt-3">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
 
-                </pagination-controls>
-            </div>
+                    </pagination-controls>
+                </div>
 
+            </div>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="data==null && profileFetching==true">
+    <div class="container card-body mt-4">
+    <div class="alert alert-secondary d-flex align-items-center alert-dismissible fade show" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" height="30" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+        <div>
+         &nbsp; <font [size]="4"><b> Username not found &nbsp; ☹️ </b></font>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+
+</div>
+
+<div *ngIf="data?.public_repos===0 &&repoFetching==true">
+    <div class="container card-body mt-4">
+        <div class="card">
+            <div class="card-header">
+                <font [size]="4"> <b> Repositories </b></font>
+            </div>
+            <div class="card-body text-center">
+                Repository not found ...
+            </div>
         </div>
     </div>
 </div>
 
-</div>
-<div *ngIf="data?.public_repos===0 &&repoFetching==true">
-    Repository not found!!
-</div>
