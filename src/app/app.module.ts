@@ -42,7 +42,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome"
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: IntercepterService, multi: true}

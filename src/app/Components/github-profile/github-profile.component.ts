@@ -11,6 +11,7 @@ export class GithubProfileComponent implements OnChanges {
 
   @Input() username!: string
 
+  repoFetching: boolean = false
 
   data : any
   repos: any
@@ -23,11 +24,13 @@ export class GithubProfileComponent implements OnChanges {
   constructor(private user: GithubService ) {}
   
   ngOnChanges(): void {
+    this.repoFetching = true;
     this.page = 1;
     console.log(this.username)
     this.reset();
     this.dataList();
-    this.repoList();
+    this.listRepo()
+
   }
 
   dataList():void{
@@ -35,7 +38,13 @@ export class GithubProfileComponent implements OnChanges {
       this.data = response;
       console.log(this.data);
       console.log(this.data.public_repos);
+      
     })
+  }
+
+
+  listRepo(){
+    this.repoList();
   }
 
   repoList():void{
@@ -43,6 +52,7 @@ export class GithubProfileComponent implements OnChanges {
       this.repos = response;
       console.log(this.repos)
       this.count = this.repos.total_count;
+      this.repoFetching = false;
     })
   }
   
@@ -64,7 +74,7 @@ export class GithubProfileComponent implements OnChanges {
     this.repos=null;
   }
 
-  maxRepoLimiter(): number {
+  RepoLimiter(): number {
     if (this.repos.total_count! > 1000) {
       return (this.repos.total_count = 1000);
     }

@@ -13,12 +13,20 @@
           &nbsp;&nbsp;
           <div class="col-auto mt-1">
           <input [(ngModel)]="inputGithubUser" size="40" name="user" class="form-control" type="search"
-            placeholder="GitHub Username" required>
+            placeholder="GitHub Username" id="validationDefault01" required>
           </div>
         &nbsp;&nbsp;
-        <div class="col-auto mt-1">
-          <input type="submit" value="Search" class="btn btn-success">
+        <div *ngIf="inputGithubUser!='' ; else elseBlock" class="col-auto mt-1">
+          <button type="submit" value="Search" class="btn btn-success">Search
+            </button>
         </div>
+        <ng-template #elseBlock>
+          <div class="col-auto mt-1">
+            <button type="submit" value="Search" class="btn btn-secondary" disabled>Search
+              </button>
+          </div>
+       </ng-template>
+
         <!-- {{inputGithubUser}} -->
       </form>
 
@@ -27,3 +35,4 @@
   <div>
   </div>
 </div>
+
