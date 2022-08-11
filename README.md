@@ -2,7 +2,7 @@
 
 ## TechStack
 <li>Angular 13.x</li>
-<li>Libraries: Angular Matarial, Bootstarp, NgxPagination, FontAwesome </li>
+<li>Libraries: Angular Material, Bootstarp, NgxPagination, FontAwesome </li>
 
 <hr>
 
