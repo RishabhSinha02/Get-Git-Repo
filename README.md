@@ -1,6 +1,6 @@
 # GetGitRepo
 
-##TechStack
+## TechStack
 <li>Angular 13.x</li>
 <li>Libraries: Angular Matarial, Bootstarp, NgxPagination, FontAwesome </li>
 
